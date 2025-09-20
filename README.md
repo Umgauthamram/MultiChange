@@ -2,7 +2,7 @@ Multichange: AI-Powered Diagram Generator
 A smart web application that transforms your text descriptions into beautiful, high-definition diagrams. Describe your process, and let our intelligent AI handle the visualization.
 
 <a href="https://multi-change.vercel.app" target="_blank">
-<img src="https://www.google.com/url?sa=E&source=gmail&q=https://img.shields.io/badge/Live%20Demo-Click%20Here-blue?style=for-the-badge%26logo=vercel" alt="Live Demo">
+<div>OPEN APP</div>
 </a>
 
 The Purpose
