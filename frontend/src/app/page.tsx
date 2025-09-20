@@ -229,7 +229,6 @@ export default function HomePage() {
           )}
         </div>
 
-        {/* THIS IS THE FIX: Corrected responsive width from 3/2 to 3/5 */}
         <div className="w-full lg:w-3/5 flex flex-col gap-4">
             <div className="bg-gray-900/50 border-2 border-dashed border-gray-700 rounded-2xl flex items-center justify-center p-4 flex-grow min-h-[400px]">
                 {isLoading ? <MetaLoadingAnimation /> : (
@@ -256,6 +255,11 @@ export default function HomePage() {
               </div>
             )}
         </div>
+        <div><h2>Errors can be faced due to prompting check wisely...</h2>
+        
+        <p>
+          if not solved use other options to generate the graph
+          </p></div>
 
       </div>
     </main>
