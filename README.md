@@ -2,7 +2,7 @@ Multichange: AI-Powered Diagram Generator
 A smart web application that transforms your text descriptions into beautiful, high-definition diagrams. Describe your process, and let our intelligent AI handle the visualization.
 
 <a href="https://multi-change.vercel.app" target="_blank">
-<img src="https://www.google.com/search?q=https://img.shields.io/badge/Live%2520Demo-Click%2520Here-blue%3Fstyle%3Dfor-the-badge%26logo%3Dvercel" alt="Live Demo">
+<img src="https://www.google.com/url?sa=E&source=gmail&q=https://img.shields.io/badge/Live%20Demo-Click%20Here-blue?style=for-the-badge%26logo=vercel" alt="Live Demo">
 </a>
 
 The Purpose
@@ -118,7 +118,7 @@ echo 'GEMINI_API_KEY="YOUR_SECRET_KEY_HERE"' > .env
 # Run the backend server
 uvicorn main:app --reload
 
-The backend will be running at http://127.0.0.1:8000.
+The backend will be running at http://1.0.0.1:8000.
 
 3. Frontend Setup
 Open a new terminal window.
@@ -131,3 +131,5 @@ npm install
 
 # Run the frontend development server
 npm run dev
+
+The frontend will be running at in local. http://localhost:3000.
