@@ -181,8 +181,6 @@ const response = await fetch(apiUrl, {
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900/80 to-purple-900 flex items-center justify-center p-4 font-sans">
       <div className="w-full max-w-6xl bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl shadow-2xl p-8 flex flex-col lg:flex-row gap-8">
-
-        {/* Left Panel */}
         <div className="w-full lg/w-2/5 flex flex-col space-y-6">
           <header>
             <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Multichange</h1>
