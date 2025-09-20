@@ -1,4 +1,3 @@
-
 import os
 import google.generativeai as genai
 from fastapi import FastAPI, HTTPException
@@ -15,13 +14,13 @@ app = FastAPI(
 )
 
 origins = [
-    "http://localhost:3000",  
-    "https://multi-change.vercel.app"
+    "http://localhost:3000",
+    "https://multi-change.vercel.app" 
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins, 
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -32,7 +31,7 @@ try:
     if not api_key:
         raise ValueError("GEMINI_API_KEY not found in .env file")
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel('gemini-2.0-flash')
+    model = genai.GenerativeModel('gemini-1.5-flash')
 except Exception as e:
     print(f"Error configuring Gemini: {e}")
     model = None
@@ -85,4 +84,3 @@ async def generate_diagram(request: DiagramRequest):
 @app.get("/")
 def read_root():
     return {"status": "Multichange API is running"}
-
