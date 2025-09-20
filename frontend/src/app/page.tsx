@@ -103,8 +103,8 @@ export default function HomePage() {
     setDiagramCode('');
 
     try {
-     const apiUrl = 'http://127.0.0.1:8000/api/generate-diagram';
-     const response = await fetch(apiUrl, {
+     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api/generate-diagram';
+const response = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
