@@ -13,7 +13,6 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Your origins list for CORS
 origins = [
     "http://localhost:3000",
     "https://multi-change.vercel.app" 
