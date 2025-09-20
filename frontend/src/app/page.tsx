@@ -5,6 +5,15 @@ import mermaid from 'mermaid';
 
 mermaid.initialize({ startOnLoad: false, theme: 'dark' });
 
+const ToastNotification = ({ message, onClose }: { message: string, onClose: () => void }) => {
+  return (
+    <div className="fixed top-5 left-1/2 -translate-x-1/2 bg-red-100 border border-red-500/50 text-red-800 px-4 py-3 rounded-lg shadow-2xl flex items-center gap-4 z-50 ">
+      <span>{message}</span>
+      <button onClick={onClose} className="text-red-800 hover:text-red-800 font-bold text-lg">&times;</button>
+    </div>
+  );
+};
+
 const MetaLoadingAnimation = () => {
   return (
     <div className="flex flex-col items-center justify-center gap-4">
@@ -70,6 +79,16 @@ export default function HomePage() {
   const [diagramCode, setDiagramCode] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    if (errorMessage) {
+      const timer = setTimeout(() => {
+        setErrorMessage(''); 
+      }, 10000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [errorMessage]);
 
   useEffect(() => {
     const render = async () => {
@@ -178,7 +197,16 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900/80 to-purple-900 flex items-center justify-center p-4 font-sans">
+      
+      {errorMessage && (
+        <ToastNotification 
+          message={errorMessage} 
+          onClose={() => setErrorMessage('')} 
+        />
+      )}
+
       <div className="w-full max-w-6xl bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl shadow-2xl p-8 flex flex-col lg:flex-row gap-8">
+        
         <div className="w-full lg:w-2/5 flex flex-col space-y-6">
           <header>
             <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Multichange</h1>
@@ -223,12 +251,11 @@ export default function HomePage() {
           >
             {isLoading ? 'Generating...' : 'Generate Diagram'}
           </button>
-
-          {errorMessage && (
-            <div className="p-3 bg-red-900/50 border border-red-500/50 text-red-300 rounded-lg text-sm">{errorMessage}</div>
-          )}
+          
+          {/* The old error message display is no longer needed here */}
         </div>
 
+        {/* Right Panel */}
         <div className="w-full lg:w-3/5 flex flex-col gap-4">
             <div className="bg-gray-900/50 border-2 border-dashed border-gray-700 rounded-2xl flex items-center justify-center p-4 flex-grow min-h-[400px]">
                 {isLoading ? <MetaLoadingAnimation /> : (
@@ -255,11 +282,6 @@ export default function HomePage() {
               </div>
             )}
         </div>
-        <div><h2>Errors can be faced due to prompting check wisely...</h2>
-        
-        <p>
-          if not solved use other options to generate the graph
-          </p></div>
 
       </div>
     </main>
