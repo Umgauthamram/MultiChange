@@ -13,6 +13,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# Your origins list for CORS
 origins = [
     "http://localhost:3000",
     "https://multi-change.vercel.app" 
@@ -31,7 +32,7 @@ try:
     if not api_key:
         raise ValueError("GEMINI_API_KEY not found in .env file")
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('gemini-2.0-flash')
 except Exception as e:
     print(f"Error configuring Gemini: {e}")
     model = None
@@ -45,11 +46,9 @@ def create_prompt(text: str, diagram_type: str) -> str:
     return f"""
     You are an intelligent process analyst and Mermaid.js expert. Your task is to handle complex user input by first extracting the core process steps and then rendering them into a diagram.
 
-    **YOUR TWO-STEP PROCESS:**
-    1.  **EXTRACT:** First, carefully read the entire user's text below. Identify the main sequence of actions or the user-system interaction flow. You MUST ignore all other descriptive text, headings, paragraphs, and pre-formatted code snippets. Distill the text down to a simple list of steps.
-    2.  **RENDER:** Second, use ONLY the clean list of steps you extracted to generate a compact, multi-line Mermaid.js {diagram_type}.
+    1.   First, carefully read the entire user's text below. Identify the main sequence of actions or the user-system interaction flow. You MUST ignore all other descriptive text, headings, paragraphs, and pre-formatted code snippets. Distill the text down to a simple list of steps.
+    2.  Second, use ONLY the clean list of steps you extracted to generate a compact, multi-line Mermaid.js {diagram_type}.
 
-    **CRITICAL RENDERING RULES:**
     - Your ENTIRE final output must be raw Mermaid.js code. Do NOT use markdown ```.
     - For flowcharts, use the "bending" layout rule: break long chains into multiple lines for readability.
     - For sequence diagrams, correctly identify participants (e.g., User, Frontend, Backend, API) and show the message flow between them.
